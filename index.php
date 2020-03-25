@@ -2,4 +2,3 @@
 
 echo 'Hello Framework!';
 phpinfo();
-ug
