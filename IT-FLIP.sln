@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29306.81
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{A0786B88-2ADB-4C21-ABE8-AA2D79766269}") = "IT-FLIP", "IT-FLIP.phpproj", "{963EB8AC-F708-4F79-8856-2E5506516178}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{963EB8AC-F708-4F79-8856-2E5506516178}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{963EB8AC-F708-4F79-8856-2E5506516178}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3862DFE7-4D4A-42C5-A4EC-1C45394D84D2}
+	EndGlobalSection
+EndGlobal
