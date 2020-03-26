@@ -1,0 +1,301 @@
+<?php
+
+/**
+ * @license LGPLv3, http://opensource.org/licenses/LGPL-3.0
+ * @copyright Metaways Infosystems GmbH, 2011
+ * @copyright Aimeos (aimeos.org), 2015-2018
+ * @package MShop
+ * @subpackage Locale
+ */
+
+
+namespace Aimeos\MShop\Locale\Item\Site;
+
+
+/**
+ * Default implementation of a Site item.
+ *
+ * @package MShop
+ * @subpackage Locale
+ */
+class Standard
+	extends \Aimeos\MShop\Common\Item\Base
+	implements \Aimeos\MShop\Locale\Item\Site\Iface
+{
+	use \Aimeos\MShop\Common\Item\Config\Traits;
+
+
+	private $children;
+
+
+	/**
+	 * Initializes the site object.
+	 *
+	 * @param array $values Associative list of item key/value pairs
+	 * @param \Aimeos\MW\Tree\Node\Iface[] $children List of tree nodes
+	 */
+	public function __construct( array $values = [], array $children = [] )
+	{
+		\Aimeos\MW\Common\Base::checkClassList( \Aimeos\MShop\Locale\Item\Site\Iface::class, $children );
+
+		parent::__construct( 'locale.site.', $values );
+		$this->children = $children;
+	}
+
+
+	/**
+	 * Creates a deep clone of all objects
+	 */
+	public function __clone()
+	{
+		foreach( $this->children as $key => $item ) {
+			$this->children[$key] = clone $item;
+		}
+	}
+
+
+	/**
+	 * Returns the id of the site.
+	 *
+	 * @return string|null Id of the site
+	 */
+	public function getSiteId()
+	{
+		return (string) $this->getId();
+	}
+
+
+	/**
+	 * Returns the code of the site.
+	 *
+	 * @return string Returns the code of the item
+	 */
+	public function getCode()
+	{
+		return (string) $this->get( 'locale.site.code', '' );
+	}
+
+
+	/**
+	 * Sets the code of the site.
+	 *
+	 * @param string $code The code to set
+	 * @return \Aimeos\MShop\Locale\Item\Site\Iface Locale site item for chaining method calls
+	 */
+	public function setCode( $code )
+	{
+		return $this->set( 'locale.site.code', $this->checkCode( $code, 255 ) );
+	}
+
+
+	/**
+	 * Returns the config property of the site.
+	 *
+	 * @return array Returns the config of the Site
+	 */
+	public function getConfig()
+	{
+		return (array) $this->get( 'locale.site.config', [] );
+	}
+
+
+	/**
+	 * Sets the config property of the site.
+	 *
+	 * @param array $options Options to be set for the Site
+	 * @return \Aimeos\MShop\Locale\Item\Site\Iface Locale site item for chaining method calls
+	 */
+	public function setConfig( array $options )
+	{
+		return $this->set( 'locale.site.config', $options );
+	}
+
+
+	/**
+	 * Returns the label property of the site.
+	 *
+	 * @return string Returns the label of the Site
+	 */
+	public function getLabel()
+	{
+		return (string) $this->get( 'locale.site.label', '' );
+	}
+
+
+	/**
+	 * Sets the label property of the site.
+	 *
+	 * @param string $label The label of the Site
+	 * @return \Aimeos\MShop\Locale\Item\Site\Iface Locale site item for chaining method calls
+	 */
+	public function setLabel( $label )
+	{
+		return $this->set( 'locale.site.label', (string) $label );
+	}
+
+
+	/**
+	 * Returns the level of the item in the tree
+	 *
+	 * @return integer Level of the item starting with "0" for the root node
+	 */
+	public function getLevel()
+	{
+		return 0;
+	}
+
+
+	/**
+	 * Returns the ID of the parent site
+	 *
+	 * @return string Unique ID of the parent site
+	 */
+	public function getParentId()
+	{
+		return '0';
+	}
+
+
+	/**
+	 * Returns the status property of the Site.
+	 *
+	 * @return integer Returns the status of the Site
+	 */
+	public function getStatus()
+	{
+		return (int) $this->get( 'locale.site.status', 1 );
+	}
+
+
+	/**
+	 * Sets status property.
+	 *
+	 * @param integer $status The status of the Site
+	 * @return \Aimeos\MShop\Locale\Item\Site\Iface Locale site item for chaining method calls
+	 */
+	public function setStatus( $status )
+	{
+		return $this->set( 'locale.site.status', (int) $status );
+	}
+
+
+	/**
+	 * Returns the item type
+	 *
+	 * @return string Item type, subtypes are separated by slashes
+	 */
+	public function getResourceType()
+	{
+		return 'locale/site';
+	}
+
+
+	/**
+	 * Tests if the item is available based on status, time, language and currency
+	 *
+	 * @return boolean True if available, false if not
+	 */
+	public function isAvailable()
+	{
+		return parent::isAvailable() && $this->getStatus() > 0;
+	}
+
+
+	/*
+	 * Sets the item values from the given array and removes that entries from the list
+	 *
+	 * @param array &$list Associative list of item keys and their values
+	 * @param boolean True to set private properties too, false for public only
+	 * @return \Aimeos\MShop\Locale\Item\Site\Iface Site item for chaining method calls
+	 */
+	public function fromArray( array &$list, $private = false )
+	{
+		$item = parent::fromArray( $list, $private );
+
+		foreach( $list as $key => $value )
+		{
+			switch( $key )
+			{
+				case 'locale.site.code': $item = $item->setCode( $value ); break;
+				case 'locale.site.label': $item = $item->setLabel( $value ); break;
+				case 'locale.site.config': $item = $item->setConfig( $value ); break;
+				case 'locale.site.status': $item = $item->setStatus( $value ); break;
+				default: continue 2;
+			}
+
+			unset( $list[$key] );
+		}
+
+		return $item;
+	}
+
+
+	/**
+	 * Returns the item values as array.
+	 *
+	 * @param boolean True to return private properties, false for public only
+	 * @return array Associative list of item properties and their values
+	 */
+	public function toArray( $private = false )
+	{
+		$list = parent::toArray( $private );
+
+		$list['locale.site.code'] = $this->getCode();
+		$list['locale.site.label'] = $this->getLabel();
+		$list['locale.site.config'] = $this->getConfig();
+		$list['locale.site.status'] = $this->getStatus();
+		$list['locale.site.hasChildren'] = $this->hasChildren();
+
+		if( $private === true )
+		{
+			$list['locale.site.level'] = $this->getLevel();
+			$list['locale.site.parentid'] = $this->getParentId();
+		}
+
+		return $list;
+	}
+
+
+	/**
+	 * Returns a child of this node identified by its index.
+	 *
+	 * @param integer $index Index of child node
+	 * @return \Aimeos\MShop\Locale\Item\Site\Iface Selected node
+	 */
+	public function getChild( $index )
+	{
+		throw new \Aimeos\MShop\Locale\Exception( sprintf( 'Child node with index "%1$d" not available', $index ) );
+	}
+
+
+	/**
+	 * Returns all children of this node.
+	 *
+	 * @return array Numerically indexed list of nodes
+	 */
+	public function getChildren()
+	{
+		return [];
+	}
+
+
+	/**
+	 * Tests if a node has children.
+	 *
+	 * @return boolean True if node has children, false if not
+	 */
+	public function hasChildren()
+	{
+		return false;
+	}
+
+
+	/**
+	 * Adds a child node to this node.
+	 *
+	 * @param \Aimeos\MShop\Common\Item\Tree\Iface $item Child node to add
+	 */
+	public function addChild( \Aimeos\MShop\Common\Item\Tree\Iface $item )
+	{
+	}
+}
