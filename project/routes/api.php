@@ -17,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::prefix('products')->group(function (){
+    Route::get('/', ['uses' => 'Api\Shop\ProductsApiController@getProducts']);
+    Route::get('/{products_id}', ['uses' => 'ProductsController@getProducts']);
+});
+

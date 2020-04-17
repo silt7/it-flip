@@ -24,6 +24,8 @@
     <Compile Include="index.php" />
     <Compile Include="project\app\Console\Kernel.php" />
     <Compile Include="project\app\Exceptions\Handler.php" />
+    <Compile Include="project\app\Http\Controllers\ApiController.php" />
+    <Compile Include="project\app\Http\Controllers\Api\Shop\ProductsApiController.php" />
     <Compile Include="project\app\Http\Controllers\Auth\ConfirmPasswordController.php" />
     <Compile Include="project\app\Http\Controllers\Auth\ForgotPasswordController.php" />
     <Compile Include="project\app\Http\Controllers\Auth\LoginController.php" />
@@ -14326,12 +14328,15 @@
   <ItemGroup>
     <Folder Include="project\" />
     <Folder Include="project\app\" />
+    <Folder Include="project\app\Http\Controllers\Api\Shop\" />
     <Folder Include="project\app\Console\" />
     <Folder Include="project\app\Exceptions\" />
     <Folder Include="project\app\Http\" />
     <Folder Include="project\app\Http\Controllers\" />
     <Folder Include="project\app\Http\Controllers\Auth\" />
     <Folder Include="project\app\Http\Middleware\" />
+    <Folder Include="project\app\Http\Controllers\Api\" />
+    <Folder Include="project\app\Models\" />
     <Folder Include="project\app\Providers\" />
     <Folder Include="project\bootstrap\" />
     <Folder Include="project\bootstrap\cache\" />
