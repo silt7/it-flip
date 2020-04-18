@@ -1,0 +1,11 @@
+{
+  "name": "Foo",
+  "short_name": "foo",
+  "start_url": "/",
+  "background_color": "#ffffff",
+  "theme_color": "#00427b",
+  "display": "minimal-ui",
+  "orientation": "portrait-primary",
+  "icons": [
+  ]
+}
